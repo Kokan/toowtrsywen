@@ -9,3 +9,4 @@ Contributors
 * Borbs <ron.borbenyi@gmail.com>
 * Hrvthp <hrvth0@gmail.com>
 * BF (not member of the coding subgroup)
+* gergely22mucsi <gergely22mucsi@gmail.com>
