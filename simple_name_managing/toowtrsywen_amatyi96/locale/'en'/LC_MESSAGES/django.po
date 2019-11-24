@@ -1,0 +1,33 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-24 22:36+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\simple_managing_names\templates\names\index.html:5
+msgid "Hello"
+msgstr "Hello"
+
+#: .\simple_managing_names\templates\names\index.html:15
+msgid "Delete"
+msgstr "Töröllllés"
+
+#: .\toowtrsywen_amatyi96\settings.py:78
+msgid "Hungarian"
+msgstr "Hungarian"
+
+#: .\toowtrsywen_amatyi96\settings.py:79
+msgid "English"
+msgstr "English"
