@@ -8,6 +8,10 @@ ADD requirements.txt /
 
 RUN pip3 install -r /requirements.txt
 
-ENTRYPOINT ["python3", "-m", "django"]
-CMD ["version"]
+ADD toowtrsywen /toowtrsywen/
+
+RUN python3 /toowtrsywen/manage.py migrate
+
+ENTRYPOINT ["python3", "/toowtrsywen/manage.py"]
+CMD ["help"]
 
