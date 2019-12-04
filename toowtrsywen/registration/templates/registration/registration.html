@@ -1,0 +1,16 @@
+{% extends 'names/base.html' %}
+{% load i18n %}
+
+{% block content %}
+	<div class="box">
+		<form>
+			<div class="test">{% trans 'Registration' %}</div>
+			<div class="lineDiv"></div>
+			<div>{% trans 'Your Name' %}: <input class="inputTextField" type="text" name="name" placeholder="{% trans 'Your Name' %}"></div>
+			<div>{% trans 'Your Email Address' %}: <input class="inputTextField" type="text" name="email" placeholder="{% trans 'Your Email Address' %}"></div>
+			<button>{% trans 'Send' %}</button>
+			</form>
+	</div>
+
+
+{% endblock %}

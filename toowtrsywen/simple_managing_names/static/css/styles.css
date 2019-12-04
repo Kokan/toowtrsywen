@@ -1,0 +1,53 @@
+html {
+	background-color: #eeeeee;
+}
+
+body {
+	background: none !important;
+	align-items: center;
+}
+
+.test {
+	font-size: 2em;
+	color: red;
+	display: block;
+}
+
+.box {
+	margin: 0 auto;
+	margin-top: 30px;
+	background: white;
+	width: fit-content;
+	padding: 10px 20px 10px 20px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 3px 3px grey;
+	text-align: center;
+	border: 1px solid grey;
+}
+
+.inputTextField {
+	color: red;
+}
+
+button {
+	margin: 10px;
+	background: linear-gradient( to right, #db0f00, #8f0a00);
+	border: 1px solid black;
+	color: white;
+	box-shadow: 0;
+	transition: box-shadow 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+button:hover {
+	box-shadow: 2px 2px 3px 3px grey;
+	transition: box-shadow 0.3s ease-in-out;
+}
+
+.lineDiv {
+	border: 0.5px solid grey;
+	height: 0;
+	width: 95%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
