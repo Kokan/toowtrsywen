@@ -10,9 +10,24 @@ Contributors
 * gergely22mucsi <gergely22mucsi@gmail.com>
 * tarczi <tarczalitamas97@gmail.com>
 
+***
+
+Running the application
+===
+Setting up database
+---
+You can set up the initial database with running the following command:
+>python manage.py migrate
+
+Starting the application
+---
+To start the application, simply run the following code snippet in command prompt:
+>python manage.py runserver
+
+***
 
 Translation
----
+===
 How to set up translation:
 1. In 'settings.py' insert the following code snippet:
 
@@ -35,6 +50,7 @@ How to set up translation:
 >\# Set the default language for your site.<br>
 ><b>LANGUAGE_CODE = 'en'</b><br>
 >
+
 >\# Contains the path list where Django should look into for django.po files for all supported languages<br>
 ><b>LOCALE_PATHS = [<br>
 >    os.path.join(BASE_DIR, 'locale'),<br>
