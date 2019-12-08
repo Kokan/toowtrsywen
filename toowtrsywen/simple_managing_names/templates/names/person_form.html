@@ -1,7 +1,7 @@
 {% extends 'names/base.html' %}
 
 {% block content %}
-    <form action="/names/addNewName/" method="post">
+    <form action="/addNewName/" method="post">
         {% csrf_token %}
         <input type="text" name="name" id="1" value="">
         <button type="submit" class="btn btn-primary">Save name</button>

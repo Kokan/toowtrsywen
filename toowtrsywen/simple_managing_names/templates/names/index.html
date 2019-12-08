@@ -9,7 +9,7 @@
                 <li>
                     {{name}}
                 </li>
-                <form action="/names/delete/" method="post">
+                <form action="/delete/" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="delete" value="{{name.id}}">
                     <button type="submit" class="btn btn-danger btn-sm">{% trans 'Delete' %}</button>
@@ -19,7 +19,7 @@
     {% endif %}
     <a class="btn btn-primary" href="addNewName/">Add name</a>
 
-    <form action="/names/search/" method="post">
+    <form action="/search/" method="post">
         {% csrf_token %}
         <input type="text" name="search" value="">
         <button type="submit" class="btn btn-primary">Search</button>
