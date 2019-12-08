@@ -18,6 +18,9 @@ from django.urls import include, path
 
 urlpatterns = [
     path('', include('simple_managing_names.urls')),
+<<<<<<< HEAD
     path('', include('check_in_out.urls')),
+=======
+>>>>>>> Set auth
     path('admin/', admin.site.urls),
 ]
