@@ -5,28 +5,36 @@ from django.views import generic
 from .models import Person
 
 # Create your views here.
-class IndexView(generic.ListView):
-    template_name = 'names/index.html'
-    context_object_name = 'name_list'
+def index_view(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/admin')
 
-    def get_queryset(self):
-        return Person.objects.all()
+    return render(request, 'names/index.html', {'name_list': Person.objects.all()})
 
 def add_new_name(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/admin')
+
     if request.method == 'POST':
         new_name = request.POST.get("name", "")
         Person.objects.create(name=new_name)
-        return HttpResponseRedirect('/names/')
+        return HttpResponseRedirect('/')
 
     return render(request, 'names/person_form.html', {})
 
 def delete_name(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/admin')
+
     _id = request.POST.get("delete", "")
-    #return render(request, 'names/thanks.html', {'name': _id})
+    
     Person.objects.filter(id=_id).delete()
-    return HttpResponseRedirect('/names/')    
+    return HttpResponseRedirect('/')    
     
 
 def search_name(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/admin')
+
     name = request.POST.get("search", "")
     return render(request, 'names/search.html', {'name': Person.objects.filter(name=name)})
