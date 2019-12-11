@@ -15,7 +15,9 @@ class RegistrationView(generic.ListView):
 def register(request):
     if request.method == 'POST':
         new_name = request.POST.get("name", "")
-        Person.objects.create(name=new_name)
+        new_email = request.POST.get("email", "")
+        new_password = request.POST.get("password", "")
+        Person.objects.create(name=new_name, email=new_email, password=new_password)
         return HttpResponseRedirect('/registration/')
 
     return render(request, 'registration/registration.html', {})

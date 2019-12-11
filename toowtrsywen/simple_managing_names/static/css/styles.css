@@ -27,6 +27,8 @@ body {
 
 .inputTextField {
 	color: red;
+	width: 250px;
+	text-align: center;
 }
 
 button {
@@ -50,4 +52,8 @@ button:hover {
 	width: 95%;
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+
+.registrationField {
+	width: 200px;
 }

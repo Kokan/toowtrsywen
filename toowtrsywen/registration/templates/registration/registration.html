@@ -5,11 +5,27 @@
 	<div class="box">
 		<form action="/registration/register/" method="post">
 			{% csrf_token %}
-			<div class="test">{% trans 'Registration' %}</div>
+			<div class="test">{% trans 'New Employee Registration' %}</div>
 			<div class="lineDiv"></div>
-			<div>{% trans 'Your Name' %}: <input class="inputTextField" type="text" name="name" placeholder="{% trans 'Name' %}"></div>
-			<div>{% trans 'Email Address' %}: <input class="inputTextField" type="text" name="email" placeholder="{% trans 'Email Address' %}"></div>
-			<div>{% trans 'Password' %}: <input class="inputTextField" type="text" name="email" placeholder="{% trans 'Password' %}"></div>
+			<div>
+				<div>{% trans 'Name' %}</div>
+				<div><input class="inputTextField" type="text" name="name" placeholder="{% trans 'Name' %}"></div>
+			</div>
+			<br>
+			<div>
+				<div>{% trans 'Email Address' %}</div>
+				<div><input class="inputTextField" type="text" name="email" placeholder="{% trans 'Email Address' %}"></div>
+			</div>
+			<br>
+			<div>
+				<div>{% trans 'Password' %}<div>
+				<div><input class="inputTextField" type="password" name="password" placeholder="{% trans 'Password' %}"></div>
+			</div>
+			<br>
+			<div>
+				<div>{% trans 'Password Again' %}<div>
+				<div><input class="inputTextField" type="password" name="password" placeholder="{% trans 'Password Again' %}"></div>
+			</div>
 			<button type="submit" class="btn btn-primary">{% trans 'Send' %}</button>
 			</form>
 	</div>
