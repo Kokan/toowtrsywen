@@ -12,10 +12,10 @@ class RegistrationView(generic.ListView):
     def get_queryset(self):
         return Person.objects.all()
 
-def registration(request):
+def register(request):
     if request.method == 'POST':
         new_name = request.POST.get("name", "")
         Person.objects.create(name=new_name)
-        return HttpResponseRedirect('/names/')
+        return HttpResponseRedirect('/registration/')
 
-    return render(request, 'names/person_form.html', {})
+    return render(request, 'registration/registration.html', {})

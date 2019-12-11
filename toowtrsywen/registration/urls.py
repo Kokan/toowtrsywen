@@ -5,4 +5,5 @@ from . import views
 app_name = 'smn'
 urlpatterns = [
     path('', views.RegistrationView.as_view(), name="registration"),
+    path('register/', views.register, name="register"),
 ]

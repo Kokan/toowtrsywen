@@ -3,14 +3,15 @@
 
 {% block content %}
 	<div class="box">
-		<form>
+		<form action="/registration/register/" method="post">
+			{% csrf_token %}
 			<div class="test">{% trans 'Registration' %}</div>
 			<div class="lineDiv"></div>
-			<div>{% trans 'Your Name' %}: <input class="inputTextField" type="text" name="name" placeholder="{% trans 'Your Name' %}"></div>
-			<div>{% trans 'Your Email Address' %}: <input class="inputTextField" type="text" name="email" placeholder="{% trans 'Your Email Address' %}"></div>
-			<button>{% trans 'Send' %}</button>
+			<div>{% trans 'Your Name' %}: <input class="inputTextField" type="text" name="name" placeholder="{% trans 'Name' %}"></div>
+			<div>{% trans 'Email Address' %}: <input class="inputTextField" type="text" name="email" placeholder="{% trans 'Email Address' %}"></div>
+			<div>{% trans 'Password' %}: <input class="inputTextField" type="text" name="email" placeholder="{% trans 'Password' %}"></div>
+			<button type="submit" class="btn btn-primary">{% trans 'Send' %}</button>
 			</form>
 	</div>
-
 
 {% endblock %}
