@@ -17,10 +17,8 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('simple_managing_names.urls')),
-<<<<<<< HEAD
+    path('', include('checkTime_Query.urls')),
+    # path('', include('simple_managing_names.urls')),
     path('', include('check_in_out.urls')),
-=======
->>>>>>> Set auth
     path('admin/', admin.site.urls),
 ]
