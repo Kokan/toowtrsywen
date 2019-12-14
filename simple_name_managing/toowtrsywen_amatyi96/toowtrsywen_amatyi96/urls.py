@@ -17,12 +17,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-<<<<<<< HEAD
-    path('', include('checkTime_Query.urls')),
-    # path('', include('simple_managing_names.urls')),
-    path('', include('check_in_out.urls')),
-=======
-    path('', include('simple_managing_names.urls')),
->>>>>>> fdc9f339f72d1a4fe22618797eae06cfa622a6f3
+    path('names/', include('simple_managing_names.urls')),
     path('admin/', admin.site.urls),
 ]
