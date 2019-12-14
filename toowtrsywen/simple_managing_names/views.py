@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import generic
+from django.contrib.auth.models import Group 
 
 from .models import Person
 
@@ -8,6 +9,9 @@ from .models import Person
 def index_view(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect('/admin')
+
+    if Group.objects.get(name="manager") in request.user.groups.all():
+        return HttpResponseRedirect('/manager')    
 
     return render(request, 'names/index.html', {'name_list': Person.objects.all()})
 
