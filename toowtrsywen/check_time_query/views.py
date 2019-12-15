@@ -2,6 +2,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from typing import List
 
+from django.template.defaulttags import register
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -29,6 +30,10 @@ class DailyWork:
         self.intervals = []
         self.sum = timedelta(0)
         self.date = None
+
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
 
 def chop_microseconds(delta):
     return delta - timedelta(microseconds=delta.microseconds)
@@ -63,15 +68,21 @@ def index(request):
         daily_work_log.append(daily_work)
 
     weekly_work_log = defaultdict(list)
+    weekly_work_sum = defaultdict(timedelta)
     for daily_work in daily_work_log:
         week = daily_work.date.isocalendar()[1]
         year = daily_work.date.isocalendar()[0]
         weekly_work_log[(year, week)].append(daily_work)
+        weekly_work_sum[(year, week)] = weekly_work_sum[(year, week)] + daily_work.sum
 
     return render(request, 'names/query.html',
                   {'query': check_times,
                    'workers': ManagerWorkers.objects.filter(manager_name=request.user.get_username()),
                    'current_user': current_user,
                    'daily_work_log': daily_work_log, 'weekly_work_log': dict(weekly_work_log),
-                   'maximum_daily_work': timedelta(hours=12)})
+                   'weekly_work_sum': dict(weekly_work_sum),
+                   'maximum_daily_work': timedelta(hours=12),
+                   'maximum_weekly_work': timedelta(hours=48),
+                   },
+                  )
 
