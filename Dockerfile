@@ -10,7 +10,9 @@ RUN pip3 install -r /requirements.txt
 
 ADD toowtrsywen /toowtrsywen/
 
-RUN python3 /toowtrsywen/manage.py migrate
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+RUN /toowtrsywen/reset-database
 
 ENTRYPOINT ["python3", "/toowtrsywen/manage.py"]
 CMD ["help"]
