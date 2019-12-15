@@ -2,29 +2,30 @@
 {% load i18n %}
 
 {% block content %}
-        <form>
+    <form>
         Choose employee:
         <select name="current_user" onchange='this.form.submit()'>
             <option value="{% firstof user.get_short_name user.get_username %}">{% firstof user.get_short_name user.get_username %}</option>
-    {% for i in workers %}
-            <option value="{{i.worker_name}}" {% if i.worker_name == current_user %}selected{% endif %}>{{i.worker_name}}</option>
-    {% endfor %}
+            {% for i in workers %}
+                <option value="{{ i.worker_name }}"
+                        {% if i.worker_name == current_user %}selected{% endif %}>{{ i.worker_name }}</option>
+            {% endfor %}
         </select>
-        </form>
+    </form>
     <div>
         {% for week_id, work_list in weekly_work_log.items %}
             <div>
-                <div><h2>{{ week_id.0 }} - w{{  week_id.1 }}</h2></div>
-                {% for daily_work in work_list %}
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">Start</th>
-                            <th scope="col">End</th>
-                            <th scope="col">Duration</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                <div><h2>{{ week_id.0 }} - w{{ week_id.1 }}</h2></div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Start</th>
+                        <th scope="col">End</th>
+                        <th scope="col">Duration</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for daily_work in work_list %}
                         {% for interval in daily_work.intervals %}
                             <tr>
                                 <td>{{ interval.start }}</td>
@@ -39,12 +40,20 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <div> {{ daily_work.sum }} </div>
+                                <div> Daily sum: {{ daily_work.sum }} </div>
                             </td>
                         </tr>
-                        </tbody>
-                    </table>
-                {% endfor %}
+                    {% endfor %}
+                    <tr>
+                        <td colspan="2">
+                            {% if 100 >  maximum_weekly_work %}
+                                <b>Warning, you exceeded the maximum weekly work time</b>
+                            {% endif %}
+                        </td>
+                        <td> Weekly sum: {{ weekly_work_sum|get_item:week_id }} </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         {% endfor %}
     </div>
