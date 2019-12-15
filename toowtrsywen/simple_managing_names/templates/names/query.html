@@ -1,0 +1,27 @@
+{% extends 'names/base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Felhasználónév</th>
+            <th scope="col">Státusz</th>
+            <th scope="col">Dátum</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for i in query %}
+                <tr>
+                    <th scope="row">{{i.name_text}}</th>
+                    {% if i.in_or_out == "in" %}
+                        <td>Belépés</td>
+                    {% elif i.in_or_out == "out" %}
+                        <td>Kilépés</td>
+                    {% endif %}
+                    <td>{{i.timestamp}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %} 
