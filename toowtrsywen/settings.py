@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'check_in_out.apps.CheckInOutConfig',
+    'manager_user.apps.ManagerUserConfig',
 ]
 
 MIDDLEWARE = [
