@@ -3,7 +3,7 @@
 
 {% block content %}
         <form>
-        Choose employee: 
+        Choose employee:
         <select name="current_user" onchange='this.form.submit()'>
             <option value="{% firstof user.get_short_name user.get_username %}">{% firstof user.get_short_name user.get_username %}</option>
     {% for i in workers %}
@@ -11,6 +11,43 @@
     {% endfor %}
         </select>
         </form>
+    <div>
+        {% for week_id, work_list in weekly_work_log.items %}
+            <div>
+                <div><h2>{{ week_id.0 }} - {{ week_id.1 }}. hét</h2></div>
+                {% for daily_work in work_list %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Start</th>
+                            <th scope="col">End</th>
+                            <th scope="col">Duration</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for interval in daily_work.intervals %}
+                            <tr>
+                                <td>{{ interval.start }}</td>
+                                <td>{{ interval.end }}</td>
+                                <td>{{ interval.length }}</td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="2">
+                                {% if daily_work.sum >  maximum_daily_work %}
+                                    <b>Warning, you exceeded the maximum daily work time</b>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div> {{ daily_work.sum }} </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
     <table class="table">
         <thead>
         <tr>
@@ -20,19 +57,19 @@
         </tr>
         </thead>
         <tbody>
-            {% for i in query %}
-                <tr>
-                    <th scope="row">{{i.name_text}}</th>
-                    {% if i.in_or_out == "in" %}
-                        <td>Entry</td>
-                    {% elif i.in_or_out == "out" %}
-                        <td>Exit</td>
-                    {% elif i.in_or_out == "ho" %}
-                        <td>Home Office</td>
-                    {% endif %}
-                    <td>{{i.timestamp}}</td>
-                </tr>
-            {% endfor %}
+        {% for i in query %}
+            <tr>
+                <th scope="row">{{ i.name_text }}</th>
+                {% if i.in_or_out == "in" %}
+                    <td>Entry</td>
+                {% elif i.in_or_out == "out" %}
+                    <td>Exit</td>
+                {% elif i.in_or_out == "ho" %}
+                    <td>Home Office</td>
+                {% endif %}
+                <td>{{ i.timestamp }}</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %} 
