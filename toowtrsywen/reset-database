@@ -7,4 +7,5 @@ base_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 rm -f ${base_dir}/db.sqlite3
 ${base_dir}/manage.py migrate
+${base_dir}/manage.py loaddata ${base_dir}/fixtures/initial_data.json
 
