@@ -18,6 +18,8 @@
                         <td>Entry</td>
                     {% elif i.in_or_out == "out" %}
                         <td>Exit</td>
+                    {% elif i.in_or_out == "ho" %}
+                        <td>Home Office</td>
                     {% endif %}
                     <td>{{i.timestamp}}</td>
                 </tr>
