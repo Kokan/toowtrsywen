@@ -1,0 +1,33 @@
+{% extends 'names/base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <h1>Home office kérése</h1>
+    <input type="datetime-local">.
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Felhasználónév</th>
+            <th scope="col">Kezdő időpont</th>
+            <th scope="col">Befejező időpont</th>
+            <th scope="col">Státusz</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for i in homeoffice_form %}
+                <tr>
+                    <th scope="row">{{i.name}}</th>
+                    {% if i.approval_status == "pending" %}
+                        <td>Függőben</td>
+                    {% elif i.approval_status == "approved" %}
+                        <td>Elfogadott</td>
+                    {% elif i.approval_status == "declined" %}
+                        <td>Elutasított</td>
+                    {% endif %}
+                    <td>{{i.start_time}}</td>
+                    <td>{{i.end_time}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'check_in_out.apps.CheckInOutConfig',
+    'home_office.apps.HomeOfficeConfig',
 ]
 
 MIDDLEWARE = [
