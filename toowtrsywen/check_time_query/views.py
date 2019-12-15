@@ -8,6 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from check_in_out.models import CheckTime
 from manager_user.models import ManagerWorkers
+from django.contrib.auth.models import User
 
 
 class WorkInterval:
@@ -38,6 +39,10 @@ def get_item(dictionary, key):
 def chop_microseconds(delta):
     return delta - timedelta(microseconds=delta.microseconds)
 
+def unique(seq):
+   s = set(seq)
+   return list(s)
+
 # Create your views here.
 def index(request):
     if not request.user.is_authenticated:
@@ -45,6 +50,14 @@ def index(request):
 
     current_user = request.GET.get("current_user", request.user.get_username())
     check_times = CheckTime.objects.filter(name_text=current_user).order_by('timestamp')
+
+    workers = list(map(lambda entry: entry.worker_name, ManagerWorkers.objects.filter(manager_name=request.user.get_username())))
+    workers.append(request.user.get_username())
+
+    if request.user.is_superuser:
+       workers = workers + list(map(lambda entry: entry.username, User.objects.all()))
+
+    workers = unique(workers)
 
     work_intervals_by_date = defaultdict(list)
     daily_work_log: List[DailyWork] = []
@@ -77,7 +90,7 @@ def index(request):
 
     return render(request, 'names/query.html',
                   {'query': check_times,
-                   'workers': ManagerWorkers.objects.filter(manager_name=request.user.get_username()),
+                   'workers': workers,
                    'current_user': current_user,
                    'daily_work_log': daily_work_log, 'weekly_work_log': dict(weekly_work_log),
                    'weekly_work_sum': dict(weekly_work_sum),
