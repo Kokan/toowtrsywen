@@ -24,10 +24,10 @@ msgstr "Hello"
 msgid "Delete"
 msgstr "Töröllllés"
 
-#: .\toowtrsywen_amatyi96\settings.py:78
+#: .\settings.py:78
 msgid "Hungarian"
 msgstr "Hungarian"
 
-#: .\toowtrsywen_amatyi96\settings.py:79
+#: .\settings.py:79
 msgid "English"
 msgstr "English"

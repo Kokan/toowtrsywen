@@ -24,10 +24,10 @@ msgstr "Szia"
 msgid "Delete"
 msgstr "Törlés"
 
-#: .\toowtrsywen_amatyi96\settings.py:78
+#: .\settings.py:78
 msgid "Hungarian"
 msgstr "Magyar"
 
-#: .\toowtrsywen_amatyi96\settings.py:79
+#: .\settings.py:79
 msgid "English"
 msgstr "Angol"
