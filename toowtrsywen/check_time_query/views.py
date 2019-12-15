@@ -30,6 +30,8 @@ class DailyWork:
         self.sum = timedelta(0)
         self.date = None
 
+def chop_microseconds(delta):
+    return delta - timedelta(microseconds=delta.microseconds)
 
 # Create your views here.
 def index(request):
@@ -52,10 +54,12 @@ def index(request):
                 work_interval.start = check_time.timestamp
             elif check_time.in_or_out == "out" and work_interval.start is not None:
                 work_interval.end = check_time.timestamp
-                work_interval.length = work_interval.end - work_interval.start
+                work_interval.length = chop_microseconds(work_interval.end - work_interval.start)
                 daily_work.intervals.append(work_interval)
                 daily_work.sum += work_interval.length
                 work_interval = WorkInterval()
+
+        daily_work.sum = chop_microseconds(daily_work.sum)
         daily_work_log.append(daily_work)
 
     weekly_work_log = defaultdict(list)
@@ -70,3 +74,4 @@ def index(request):
                    'current_user': current_user,
                    'daily_work_log': daily_work_log, 'weekly_work_log': dict(weekly_work_log),
                    'maximum_daily_work': timedelta(hours=12)})
+
